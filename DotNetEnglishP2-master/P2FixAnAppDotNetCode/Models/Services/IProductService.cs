@@ -1,9 +1,11 @@
-﻿namespace P2FixAnAppDotNetCode.Models.Services
+﻿using P2FixAnAppDotNetCode.Models.ViewModels;
+
+namespace P2FixAnAppDotNetCode.Models.Services
 {
     public interface IProductService
     {
-        Product[] GetAllProducts();
-        Product GetProductById(int id);
+        ProductViewModel[] GetAllProducts();
+        ProductViewModel GetProductById(int id);
         void UpdateProductQuantities(Cart cart);
     }
 }

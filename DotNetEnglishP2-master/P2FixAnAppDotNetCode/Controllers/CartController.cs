@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using P2FixAnAppDotNetCode.Models;
 using P2FixAnAppDotNetCode.Models.Services;
+using P2FixAnAppDotNetCode.Models.ViewModels;
 
 namespace P2FixAnAppDotNetCode.Controllers
 {
@@ -24,7 +25,7 @@ namespace P2FixAnAppDotNetCode.Controllers
         [HttpPost]
         public RedirectToActionResult AddToCart(int id)
         {
-            Product product = _productService.GetProductById(id);
+            ProductViewModel product = _productService.GetProductById(id);
 
             if (product != null)
             {
@@ -39,7 +40,7 @@ namespace P2FixAnAppDotNetCode.Controllers
 
         public RedirectToActionResult RemoveFromCart(int id)
         {
-            Product product = _productService.GetAllProducts()
+            ProductViewModel product = _productService.GetAllProducts()
                 .FirstOrDefault(p => p.Id == id);
 
             if (product != null)

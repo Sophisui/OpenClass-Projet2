@@ -1,8 +1,10 @@
-﻿namespace P2FixAnAppDotNetCode.Models.Repositories
+﻿using P2FixAnAppDotNetCode.Models.ViewModels;
+
+namespace P2FixAnAppDotNetCode.Models.Repositories
 {
     public interface IProductRepository
     {
-        Product[] GetAllProducts();
+        ProductViewModel[] GetAllProducts();
 
         void UpdateProductStocks(int productId, int quantityToRemove);
     }

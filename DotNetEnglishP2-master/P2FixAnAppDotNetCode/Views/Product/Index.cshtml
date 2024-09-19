@@ -1,5 +1,5 @@
 ﻿@using P2FixAnAppDotNetCode.Models
-@model IEnumerable<P2FixAnAppDotNetCode.Models.Product>
+@using P2FixAnAppDotNetCode.Models.ViewModels
 @{
     ViewData["Title"] = Localizer["ProductList"];
 }
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Product p in Model)
+            @foreach (ProductViewModel p in Model)
             {
                 <tr>
                     <td>@p.Name</td>
