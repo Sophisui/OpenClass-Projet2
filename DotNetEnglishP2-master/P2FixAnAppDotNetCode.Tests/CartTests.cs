@@ -3,6 +3,7 @@ using System.Linq;
 using P2FixAnAppDotNetCode.Models;
 using P2FixAnAppDotNetCode.Models.Repositories;
 using P2FixAnAppDotNetCode.Models.Services;
+using P2FixAnAppDotNetCode.Models.ViewModels;
 using Xunit;
 
 namespace P2FixAnAppDotNetCode.Tests
@@ -16,15 +17,15 @@ namespace P2FixAnAppDotNetCode.Tests
         public void AddItemInCart()
         {
             Cart cart = new Cart();
-            Product product1 = new Product(1, 0, 20, "name", "description");
-            Product product2 = new Product(1, 0, 20, "name", "description");
+            ProductViewModel product1 = new ProductViewModel(1, 0, 20, "name", "description");
+            ProductViewModel product2 = new ProductViewModel(1, 0, 20, "name", "description");
 
             cart.AddItem(product1, 1);
             cart.AddItem(product2, 1);
 
-            Assert.NotEmpty(cart.Lines);
-            Assert.Single(cart.Lines);
-            Assert.Equal(2, cart.Lines.First().Quantity);
+            Assert.NotEmpty(cart.cartLines);
+            Assert.Single(cart.cartLines);
+            Assert.Equal(2, cart.cartLines.First().Quantity);
         }
 
         [Fact]
@@ -35,7 +36,7 @@ namespace P2FixAnAppDotNetCode.Tests
             IOrderRepository orderRepository = new OrderRepository();
             IProductService productService = new ProductService(productRepository, orderRepository);
 
-            IEnumerable<Product> products = productService.GetAllProducts();
+            IEnumerable<ProductViewModel> products = productService.GetAllProducts();
             cart.AddItem(products.First(p => p.Id == 2), 2);
             cart.AddItem(products.First(p => p.Id == 5), 1);
             double averageValue = cart.GetAverageValue();
@@ -52,7 +53,7 @@ namespace P2FixAnAppDotNetCode.Tests
             IOrderRepository orderRepository = new OrderRepository();
             IProductService productService = new ProductService(productRepository, orderRepository);
 
-            IEnumerable<Product> products = productService.GetAllProducts();
+            IEnumerable<ProductViewModel> products = productService.GetAllProducts();
             cart.AddItem(products.First(p => p.Id == 1), 1);
             cart.AddItem(products.First(p => p.Id == 4), 3);
             cart.AddItem(products.First(p => p.Id == 5), 1);
@@ -66,10 +67,10 @@ namespace P2FixAnAppDotNetCode.Tests
         public void FindProductInCartLines()
         {
             Cart cart = new Cart();
-            Product product = new Product(999, 0, 20, "name", "description");
+            ProductViewModel product = new ProductViewModel(999, 0, 20, "name", "description");
 
             cart.AddItem(product, 1);
-            Product result = cart.FindProductInCartLines(999);
+            ProductViewModel result = cart.FindProductInCartLines(999);
 
             Assert.NotNull(result);
         }

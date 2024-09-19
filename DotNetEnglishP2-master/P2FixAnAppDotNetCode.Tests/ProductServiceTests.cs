@@ -3,6 +3,7 @@ using System.Linq;
 using P2FixAnAppDotNetCode.Models;
 using P2FixAnAppDotNetCode.Models.Repositories;
 using P2FixAnAppDotNetCode.Models.Services;
+using P2FixAnAppDotNetCode.Models.ViewModels;
 using Xunit;
 
 namespace P2FixAnAppDotNetCode.Tests
@@ -23,7 +24,7 @@ namespace P2FixAnAppDotNetCode.Tests
             var products = productService.GetAllProducts();
 
             //Assert.IsType<List<Product>>(products);
-            Assert.IsType<Product[]>(products);
+            Assert.IsType<ProductViewModel[]>(products);
 
         }
 
@@ -35,7 +36,7 @@ namespace P2FixAnAppDotNetCode.Tests
             IOrderRepository orderRepository = new OrderRepository();
             IProductService productService = new ProductService(productRepository, orderRepository);
 
-            IEnumerable<Product> products = productService.GetAllProducts();
+            IEnumerable<ProductViewModel> products = productService.GetAllProducts();
             cart.AddItem(products.Where(p => p.Id == 1).First(), 1);
             cart.AddItem(products.Where(p => p.Id == 3).First(), 2);
             cart.AddItem(products.Where(p => p.Id == 5).First(), 3);
@@ -70,7 +71,7 @@ namespace P2FixAnAppDotNetCode.Tests
             IProductService productService = new ProductService(productRepository, orderRepository);
             int id = 3;
 
-            Product product = productService.GetProductById(id);
+            ProductViewModel product = productService.GetProductById(id);
 
             Assert.Same("JVC HAFX8R Headphone", product.Name);
             Assert.Equal(69.99, product.Price);
