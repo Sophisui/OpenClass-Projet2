@@ -24,13 +24,13 @@ namespace P2FixAnAppDotNetCode.Controllers
         [HttpPost]
         public IActionResult Index(Order order)
         {
-            if (!((Cart) _cart).cartLines.Any())
+            if (!((Cart) _cart).CartLines.Any())
             {
                 ModelState.AddModelError("", _localizer["CartEmpty"]);
             }
             if (ModelState.IsValid)
             {
-                order.Lines = (_cart as Cart)?.cartLines.ToArray();
+                order.Lines = (_cart as Cart)?.CartLines.ToArray();
                 _orderService.SaveOrder(order);
                 return RedirectToAction(nameof(Completed));
             }

@@ -3,11 +3,11 @@
 @model P2FixAnAppDotNetCode.Models.Cart
 
 <div class="">
-    @if (Model.cartLines.Count() > 0)
+    @if (Model.CartLines.Count() > 0)
     {
         <small class="navbar-text">
             <b>@Localizer["YourCart"]:</b>
-            @Model.cartLines.Sum(x => x.Quantity) item(s)
+            @Model.CartLines.Sum(x => x.Quantity) item(s)
             @Model.GetTotalValue().ToString("c")
         </small>
     }
