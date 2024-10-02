@@ -14,6 +14,8 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public List<CartViewModel> CartLines => GetCartLineList();
 
+        public IEnumerable<object> Items { get; internal set; }
+
         /// <summary>
         /// Return the actual cartline list
         /// </summary>

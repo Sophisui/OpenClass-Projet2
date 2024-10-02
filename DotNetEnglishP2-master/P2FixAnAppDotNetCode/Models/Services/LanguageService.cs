@@ -14,9 +14,9 @@ namespace P2FixAnAppDotNetCode.Models.Services
 
         private static readonly Dictionary<string, string> cultures = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
-                { "en", "en-US" },
-                { "es", "es-ES" },
-                { "fr", "fr-FR" }
+                { "English", "en-US" },
+                { "Spanish", "es-ES" },
+                { "French", "fr-FR" }
             };
 
         /// <summary>
