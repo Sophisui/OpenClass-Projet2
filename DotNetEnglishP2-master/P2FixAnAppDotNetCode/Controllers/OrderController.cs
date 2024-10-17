@@ -32,7 +32,7 @@ namespace P2FixAnAppDotNetCode.Controllers
             {
                 order.Lines = (_cart as Cart)?.CartLines.ToArray();
                 _orderService.SaveOrder(order);
-                return RedirectToAction(nameof(Completed));
+                return RedirectToAction(nameof(Completed)); //Rediriger vers la liste des produits updated
             }
             else
             {

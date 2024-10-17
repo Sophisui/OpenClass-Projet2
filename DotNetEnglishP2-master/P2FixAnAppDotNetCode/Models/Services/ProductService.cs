@@ -25,7 +25,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public List<ProductViewModel> GetAllProducts()
         {
             // Change return type from array to List<T>
-            return _productRepository.GetAllProducts().ToList(); // Assuming _productRepository returns an array.
+            return _productRepository.GetAllProducts(); // Assuming _productRepository returns an array.
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public ProductViewModel GetProductById(int id)
         {
             // Implement the method
-            return _productRepository.GetProductById(id); // Assuming you have this method in the repository
+            return _productRepository.GetProductById(id); 
         }
 
         /// <summary>
@@ -43,13 +43,13 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public void UpdateProductQuantities(Cart cart)
         {
             // Implement the method
-            foreach (var item in cart.Items) // Assuming Cart has a collection of items
+            foreach (var item in cart.CartLines)
             {
-                var product = _productRepository.GetProductById(item.ProductId); // Get product by ID
+                var product = _productRepository.GetProductById(item.Product.Id); // Get product by ID
                 if (product != null)
                 {
-                    product.Quantity -= item.Quantity; // Update product quantity
-                    _productRepository.UpdateProductStocks(product); // Update the product in the repository
+                    product.Stock -= item.Quantity; // Update product quantity
+                    _productRepository.UpdateProductStocks(product.Id,item.Quantity); // Update the product in the repository
                 }
             }
         }

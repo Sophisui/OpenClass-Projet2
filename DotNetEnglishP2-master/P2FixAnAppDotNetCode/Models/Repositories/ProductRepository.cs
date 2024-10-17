@@ -33,10 +33,10 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
         /// <summary>
         /// Get all products from the inventory
         /// </summary>
-        public ProductViewModel[] GetAllProducts()
+        public List<ProductViewModel> GetAllProducts()
         {
             List<ProductViewModel> list = _products.Where(p => p.Stock > 0).OrderBy(p => p.Name).ToList();
-            return list.ToArray();
+            return list;
         }
 
         /// <summary>
@@ -47,8 +47,18 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
             ProductViewModel product = _products.First(p => p.Id == productId);
             product.Stock = product.Stock - quantityToRemove;
 
-            if (product.Stock == 0)
+            if (product.Stock >= 0)
                 _products.Remove(product);
+        }
+
+        public ProductViewModel GetProductById(int id)
+        {
+            return _products.FirstOrDefault(p => p.Id == id);
+        }
+
+        public int GetProductById(object productId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
