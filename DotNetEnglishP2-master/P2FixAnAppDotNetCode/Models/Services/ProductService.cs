@@ -48,7 +48,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
                 var product = _productRepository.GetProductById(item.Product.Id); // Get product by ID
                 if (product != null)
                 {
-                    product.Stock -= item.Quantity; // Update product quantity
+                    //product.Stock -= item.Quantity; // Update product quantity
                     _productRepository.UpdateProductStocks(product.Id,item.Quantity); // Update the product in the repository
                 }
             }
