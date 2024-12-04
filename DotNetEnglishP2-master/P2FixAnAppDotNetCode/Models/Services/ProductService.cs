@@ -25,7 +25,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public List<ProductViewModel> GetAllProducts()
         {
             // Change return type from array to List<T>
-            return _productRepository.GetAllProducts(); // Assuming _productRepository returns an array.
+            return _productRepository.GetAllProducts();
         }
 
         /// <summary>

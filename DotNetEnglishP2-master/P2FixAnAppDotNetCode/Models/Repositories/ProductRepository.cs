@@ -49,13 +49,13 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
         /// </summary>
         public void UpdateProductStocks(int productId, int quantityToRemove)
         {
-            ProductViewModel product = _products.First(p => p.Id == productId);
+            ProductViewModel product = _products.FirstOrDefault(p => p.Id == productId);
             //product.Stock = product.Stock - quantityToRemove;
 
             if (product.Stock >= 0)
             {
                 var stock = product.Stock;
-                _products.First(p => p.Id == productId).Stock = stock -= quantityToRemove;
+                _products.FirstOrDefault(p => p.Id == productId).Stock = stock -= quantityToRemove;
             }
                 
         }
@@ -63,11 +63,6 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
         public ProductViewModel GetProductById(int id)
         {
             return _products.FirstOrDefault(p => p.Id == id);
-        }
-
-        public int GetProductById(object productId)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
